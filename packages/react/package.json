@@ -1,0 +1,21 @@
+{
+  "name": "@trelent/e2ee-react",
+  "module": "src/index.ts",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trelent/e2ee.git",
+    "directory": "packages/react"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/react": "^19.0.1"
+  },
+  "peerDependencies": {
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "@trelent/e2ee-core": "../core",
+    "react": "^19.0.0"
+  }
+}

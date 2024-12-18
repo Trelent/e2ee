@@ -1,0 +1,21 @@
+{
+  "author": "Trelent Inc.",
+  "name": "@trelent/e2ee-core",
+  "version": "0.0.2",
+  "module": "src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trelent/e2ee.git",
+    "directory": "packages/core"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "type": "module",
+  "dependencies": {
+    "superjson": "^2.2.2"
+  }
+}

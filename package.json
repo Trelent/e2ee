@@ -1,0 +1,8 @@
+{
+  "name": "trelent-e2ee",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ]
+}
