@@ -33,7 +33,7 @@ export class E2EEService {
     }
   }
 
-  encryptRaw = (data: Buffer) => {
+  encryptRaw = (data: Buffer): Promise<Buffer> => {
     const passphrase = this.PassphraseStore.getPassphrase();
 
     const encrypted = encrypt(data, passphrase, this.cryptoConfig);
@@ -41,13 +41,13 @@ export class E2EEService {
     return encrypted;
   };
 
-  decryptRaw = (data: Buffer) => {
+  decryptRaw = (data: Buffer): Promise<Buffer> => {
     const passphrase = this.PassphraseStore.getPassphrase();
     const decrypted = decrypt(data, passphrase, this.cryptoConfig);
     return decrypted;
   };
 
-  encrypt = <T>(data: T) => {
+  encrypt = <T>(data: T): Promise<Buffer> => {
     // Serialize the typed data into a buffer
     const jsonStr = SuperJSON.stringify(data);
     const dataBuffer = Buffer.from(jsonStr);
@@ -70,3 +70,4 @@ export type { CryptoConfig } from "~/crypto";
 export type { Passphrase } from "~/passphrase/types";
 export type { PassphraseStore } from "~/store/client";
 export * as subtle from "~/subtle";
+

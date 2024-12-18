@@ -7,15 +7,15 @@ import type { Passphrase } from "~/passphrase/types";
  * Parses the combined data back into its components
  */
 function parseEncryptedData(
-  combined: Uint8Array,
+  combined: Buffer,
   config: CryptoConfig = defaultConfig
 ): EncryptedData {
-  const salt = combined.slice(0, config.SALT_SIZE);
-  const iv = combined.slice(
+  const salt = combined.subarray(0, config.SALT_SIZE);
+  const iv = combined.subarray(
     config.SALT_SIZE,
     config.SALT_SIZE + config.IV_SIZE
   );
-  const ciphertext = combined.slice(config.SALT_SIZE + config.IV_SIZE);
+  const ciphertext = combined.subarray(config.SALT_SIZE + config.IV_SIZE);
 
   return { salt, iv, ciphertext };
 }
@@ -29,8 +29,8 @@ async function encrypt(
   config: CryptoConfig = defaultConfig
 ): Promise<Buffer> {
   // Generate salt and IV
-  const salt = crypto.getRandomValues(new Uint8Array(config.SALT_SIZE));
-  const iv = crypto.getRandomValues(new Uint8Array(config.IV_SIZE));
+  const salt = crypto.getRandomValues(Buffer.alloc(config.SALT_SIZE));
+  const iv = crypto.getRandomValues(Buffer.alloc(config.IV_SIZE));
 
   // Derive key from passphrase and salt
   const key = await deriveKey(passphrase, config);
@@ -46,8 +46,8 @@ async function encrypt(
   );
 
   // Combine everything into a single uint8 array
-  const encryptedArray = new Uint8Array(encryptedBuffer);
-  const combined = new Uint8Array(
+  const encryptedArray = Buffer.from(encryptedBuffer);
+  const combined = Buffer.alloc(
     config.SALT_SIZE + config.IV_SIZE + encryptedArray.length
   );
 
@@ -56,7 +56,7 @@ async function encrypt(
   combined.set(iv, config.SALT_SIZE); // Next M bytes: IV
   combined.set(encryptedArray, config.SALT_SIZE + config.IV_SIZE); // Rest: encrypted data
 
-  return Buffer.from(combined);
+  return combined;
 }
 
 /**
@@ -67,8 +67,8 @@ async function decrypt(
   passphrase: Passphrase,
   config: CryptoConfig = defaultConfig
 ): Promise<Buffer> {
-  // Extract salt, IV, and encrypted data
-  const { salt, iv, ciphertext } = parseEncryptedData(data, config);
+  // Extract IV and encrypted data
+  const { iv, ciphertext } = parseEncryptedData(data, config);
 
   // Derive the key using the extracted salt
   const key = await deriveKey(passphrase);
@@ -88,3 +88,4 @@ async function decrypt(
 
 export * from "./types";
 export { decrypt, encrypt };
+

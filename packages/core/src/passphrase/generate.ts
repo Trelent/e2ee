@@ -15,13 +15,13 @@ const PASSPHRASE_BIT_LENGTH = 128;
 export async function generateSecurePassphrase(
   bitLen: number = PASSPHRASE_BIT_LENGTH,
   saltSize: number = PASSPHRASE_SALT_SIZE
-): Promise<[string, Uint8Array, Uint8Array]> {
+): Promise<[string, Buffer, Buffer]> {
   // Generate random bytes based on bit length
   const byteLen = bitLen / 8;
-  const bytes = crypto.getRandomValues(new Uint8Array(byteLen));
+  const bytes = crypto.getRandomValues(new Buffer(byteLen));
 
   // Generate salt
-  const salt = crypto.getRandomValues(new Uint8Array(saltSize));
+  const salt = crypto.getRandomValues(new Buffer(saltSize));
 
   // Encode bytes to passphrase using BIP39
   const passphrase = await encode(bytes);

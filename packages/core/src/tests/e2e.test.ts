@@ -46,7 +46,7 @@ describe("E2E Service", () => {
     const encrypted = await service.encryptRaw(testBuffer);
     const decrypted = await service.decryptRaw(encrypted);
 
-    expect(Buffer.compare(testBuffer, decrypted)).toBe(0);
+    expect(decrypted).toEqual(testBuffer);
   });
 
   it("should use the same passphrase for multiple operations", async () => {

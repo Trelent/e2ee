@@ -8,7 +8,7 @@ export class MockPassphraseStore implements PassphraseStore {
     this.passphrase = passphrase;
   }
 
-  getPassphrase() {
+  getPassphrase(): Passphrase {
     if (!this.passphrase) {
       throw new Error("Passphrase not set");
     }

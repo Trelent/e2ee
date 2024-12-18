@@ -5,7 +5,8 @@ test("Can set and get passphrase from store", () => {
   const store = new MockPassphraseStore();
   const passphrase = {
     phrase: "test-passphrase",
-    salt: new Uint8Array([1, 2, 3, 4]),
+    bytes: new Buffer([1, 2, 3, 4]),
+    salt: new Buffer([1, 2, 3, 4]),
   };
 
   store.setPassphrase(passphrase);
@@ -24,11 +25,13 @@ test("Can update passphrase", () => {
   const store = new MockPassphraseStore();
   const passphrase1 = {
     phrase: "test-passphrase-1",
-    salt: new Uint8Array([1, 2, 3, 4]),
+    bytes: new Buffer([1, 2, 3, 4]),
+    salt: new Buffer([1, 2, 3, 4]),
   };
   const passphrase2 = {
     phrase: "test-passphrase-2",
-    salt: new Uint8Array([5, 6, 7, 8]),
+    bytes: new Buffer([5, 6, 7, 8]),
+    salt: new Buffer([5, 6, 7, 8]),
   };
 
   store.setPassphrase(passphrase1);

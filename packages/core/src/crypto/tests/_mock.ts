@@ -1,4 +1,4 @@
 // Mock values for deterministic testing
-export const mockRandomValues = new Uint8Array([
+export const mockRandomValues: Buffer = new Buffer([
   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
 ]);

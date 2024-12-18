@@ -25,11 +25,9 @@
     "noPropertyAccessFromIndexSignature": false,
 
     // Base url/paths
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
-      "~/*": ["./src/*"],
-      "@trelent/e2ee-core": ["../core/src"]
+      "~/*": ["./*"]
     }
-  },
-  "references": [{ "path": "../core" }]
+  }
 }

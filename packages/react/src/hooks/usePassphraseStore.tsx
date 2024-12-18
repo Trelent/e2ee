@@ -34,8 +34,8 @@ class LocalStorageStore implements PassphraseStore {
       const parsed = JSON.parse(stored);
       const passphrase = {
         phrase: parsed.phrase,
-        bytes: new Uint8Array(parsed.bytes),
-        salt: new Uint8Array(parsed.salt),
+        bytes: new Buffer(parsed.bytes),
+        salt: new Buffer(parsed.salt),
       };
       this.setState(passphrase);
       return passphrase;
@@ -81,8 +81,8 @@ export function usePassphraseStore(
         const parsed = JSON.parse(stored);
         setState({
           phrase: parsed.phrase,
-          bytes: new Uint8Array(parsed.bytes),
-          salt: new Uint8Array(parsed.salt),
+          bytes: new Buffer(parsed.bytes),
+          salt: new Buffer(parsed.salt),
         });
       }
     }

@@ -1,5 +1,6 @@
 {
   "name": "@trelent/e2ee-react",
+  "version": "0.0.1",
   "module": "src/index.ts",
   "type": "module",
   "repository": {
@@ -15,7 +16,10 @@
     "typescript": "^5.7.2"
   },
   "dependencies": {
-    "@trelent/e2ee-core": "../core",
+    "@trelent/e2ee-core": "^0.0.2",
     "react": "^19.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

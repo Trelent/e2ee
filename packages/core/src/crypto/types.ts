@@ -1,13 +1,13 @@
 export interface EncryptedData {
-  salt: Uint8Array;
-  iv: Uint8Array;
-  ciphertext: Uint8Array;
+  salt: Buffer;
+  iv: Buffer;
+  ciphertext: Buffer;
 }
 
 export interface DecryptedData {
-  salt: Uint8Array;
-  iv: Uint8Array;
-  plaintext: Uint8Array;
+  salt: Buffer;
+  iv: Buffer;
+  plaintext: Buffer;
 }
 
 export interface CryptoConfig {

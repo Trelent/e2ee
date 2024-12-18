@@ -16,8 +16,8 @@ interface TrelentE2EEContextValue {
   getPassphrase: () => Passphrase;
   encrypt: <T>(data: T) => Promise<string>;
   decrypt: <T>(encrypted: string) => Promise<T>;
-  encryptRaw: (data: Uint8Array) => Promise<string>;
-  decryptRaw: (encrypted: string) => Promise<Uint8Array>;
+  encryptRaw: (data: Buffer) => Promise<string>;
+  decryptRaw: (encrypted: string) => Promise<Buffer>;
   isGenerating: boolean;
   error: Error | null;
 }
@@ -104,7 +104,7 @@ export function TrelentE2EEProvider({
   );
 
   const encryptRaw = useCallback(
-    async (data: Uint8Array) => {
+    async (data: Buffer) => {
       const encrypted = await service.encryptRaw(Buffer.from(data));
       return encrypted.toString("base64");
     },
@@ -115,7 +115,7 @@ export function TrelentE2EEProvider({
     async (encrypted: string) => {
       const buffer = Buffer.from(encrypted, "base64");
       const decrypted = await service.decryptRaw(buffer);
-      return new Uint8Array(decrypted);
+      return new Buffer(decrypted);
     },
     [service]
   );

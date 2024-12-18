@@ -3,12 +3,12 @@ import { BIP39_WORD_LIST } from "../crypto/bip39/words";
 /**
  * Encodes bytes into a BIP39 mnemonic phrase
  */
-export async function encode(bytes: Uint8Array): Promise<string> {
+export async function encode(bytes: Buffer): Promise<string> {
   const bitLen = bytes.length * 8;
   const sumBitLen = bitLen / 32;
 
   // Get SHA-256 hash for checksum
-  const hash = new Uint8Array(await crypto.subtle.digest("SHA-256", bytes));
+  const hash = new Buffer(await crypto.subtle.digest("SHA-256", bytes));
 
   // Convert bytes to binary string
   let digits = Array.from(bytes).reduce(
@@ -35,7 +35,7 @@ export async function encode(bytes: Uint8Array): Promise<string> {
 /**
  * Decodes a BIP39 mnemonic phrase back into bytes
  */
-export async function decode(passphrase: string): Promise<Uint8Array> {
+export async function decode(passphrase: string): Promise<Buffer> {
   // Normalize the passphrase
   passphrase = passphrase.normalize("NFKD").trim().toLowerCase();
 
@@ -68,10 +68,10 @@ export async function decode(passphrase: string): Promise<Uint8Array> {
     }
   }
 
-  const bytes = Uint8Array.from(bytesArr);
+  const bytes = Buffer.from(bytesArr);
 
   // Verify checksum
-  const hash = new Uint8Array(await crypto.subtle.digest("SHA-256", bytes));
+  const hash = new Buffer(await crypto.subtle.digest("SHA-256", bytes));
   const expected = hash[0].toString(2).padStart(8, "0").slice(0, sumBitLen);
 
   if (expected !== checksum) {
