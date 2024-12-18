@@ -1,5 +1,5 @@
-import type { Passphrase } from "~/passphrase/types";
-import type { PassphraseStore } from "~/store/client";
+import type { Passphrase } from "../../passphrase/types";
+import type { PassphraseStore } from "../client";
 
 export class MockPassphraseStore implements PassphraseStore {
   private passphrase: Passphrase | null = null;

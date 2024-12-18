@@ -1,8 +1,8 @@
 import SuperJSON from "superjson";
-import { decrypt, encrypt, type CryptoConfig } from "~/crypto";
-import type { Passphrase } from "~/passphrase/types";
-import type { PassphraseStore } from "~/store/client";
+import { decrypt, encrypt, type CryptoConfig } from "./crypto";
 import { generateSecurePassphrase } from "./passphrase/generate";
+import type { Passphrase } from "./passphrase/types";
+import type { PassphraseStore } from "./store/client";
 
 export class E2EEService {
   private PassphraseStore: PassphraseStore;
@@ -66,8 +66,8 @@ export class E2EEService {
   };
 }
 
-export type { CryptoConfig } from "~/crypto";
-export type { Passphrase } from "~/passphrase/types";
-export type { PassphraseStore } from "~/store/client";
-export * as subtle from "~/subtle";
+export type { CryptoConfig } from "./crypto/types";
+export type { Passphrase } from "./passphrase/types";
+export type { PassphraseStore } from "./store/client";
+export * as subtle from "./subtle";
 

@@ -1,4 +1,4 @@
-import type { CryptoConfig } from "~/crypto/types";
+import type { CryptoConfig } from "./types";
 
 /**
  * Default crypto configuration

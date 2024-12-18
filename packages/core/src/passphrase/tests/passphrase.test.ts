@@ -1,6 +1,6 @@
 import { expect, test } from "bun:test";
-import { generateSecurePassphrase } from "~/passphrase/generate";
-import { checksum, decode } from "~/passphrase/io";
+import { generateSecurePassphrase } from "../generate";
+import { checksum, decode } from "../io";
 
 // Test bit lengths that are valid for BIP39
 const TEST_BIT_LENGTH = 128; // Will generate 12 words

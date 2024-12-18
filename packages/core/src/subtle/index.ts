@@ -4,5 +4,5 @@
  * generation/verification, and more.
  */
 
-export * from "~/crypto";
-export * from "~/passphrase";
+export * from "../crypto";
+export * from "../passphrase";

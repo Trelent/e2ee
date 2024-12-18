@@ -1,7 +1,7 @@
-import { defaultConfig } from "~/crypto/config";
-import type { CryptoConfig, EncryptedData } from "~/crypto/types";
-import { deriveKey } from "~/passphrase/derive";
-import type { Passphrase } from "~/passphrase/types";
+import { deriveKey } from "../passphrase/derive";
+import type { Passphrase } from "../passphrase/types";
+import { defaultConfig } from "./config";
+import type { CryptoConfig, EncryptedData } from "./types";
 
 /**
  * Parses the combined data back into its components
@@ -88,4 +88,3 @@ async function decrypt(
 
 export * from "./types";
 export { decrypt, encrypt };
-

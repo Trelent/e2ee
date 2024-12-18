@@ -1,6 +1,6 @@
 import { expect, test } from "bun:test";
-import { generateSecurePassphrase } from "~/passphrase/generate";
-import type { Passphrase } from "~/passphrase/types";
+import { generateSecurePassphrase } from "../../passphrase/generate";
+import type { Passphrase } from "../../passphrase/types";
 import { defaultConfig } from "../config";
 import { decrypt, encrypt } from "../index";
 

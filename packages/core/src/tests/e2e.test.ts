@@ -1,7 +1,7 @@
 import { describe, expect, it } from "bun:test";
-import { defaultConfig } from "~/crypto/config";
-import { E2EEService } from "~/index";
-import { MockPassphraseStore } from "~/store/tests/_mock";
+import { defaultConfig } from "../crypto/config";
+import { E2EEService } from "../index";
+import { MockPassphraseStore } from "../store/tests/_mock";
 
 describe("E2E Service", () => {
   const store = new MockPassphraseStore();

@@ -1,5 +1,5 @@
-import { defaultConfig } from "~/crypto/config";
-import type { CryptoConfig } from "~/crypto/types";
+import { defaultConfig } from "../crypto/config";
+import type { CryptoConfig } from "../crypto/types";
 import type { Passphrase } from "./types";
 
 /**
