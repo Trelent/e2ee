@@ -1,7 +1,7 @@
 {
   "author": "Trelent Inc.",
   "name": "@trelent/e2ee-react",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "module": "./dist/index.js",
   "homepage": "https://github.com/Trelent/e2ee/tree/main/packages/react#readme",
   "repository": {
@@ -13,8 +13,8 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsc",
-    "publish": "bun run build && bun publish"
+    "build": "tsc --project tsconfig.build.json",
+    "pb": "bun run build && bun publish"
   },
   "devDependencies": {
     "@types/bun": "latest",

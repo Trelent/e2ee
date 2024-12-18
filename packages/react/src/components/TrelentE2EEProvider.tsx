@@ -114,8 +114,7 @@ export function TrelentE2EEProvider({
   const decryptRaw = useCallback(
     async (encrypted: string) => {
       const buffer = Buffer.from(encrypted, "base64");
-      const decrypted = await service.decryptRaw(buffer);
-      return Buffer.from(decrypted);
+      return await service.decryptRaw(buffer);
     },
     [service]
   );
