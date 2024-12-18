@@ -1,25 +1,44 @@
 {
+  "author": "Trelent Inc.",
   "name": "@trelent/e2ee-react",
-  "version": "0.0.1",
-  "module": "src/index.ts",
-  "type": "module",
+  "version": "0.0.2",
+  "module": "./dist/index.js",
+  "homepage": "https://github.com/Trelent/e2ee/tree/main/packages/react#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/trelent/e2ee.git",
     "directory": "packages/react"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc",
+    "publish": "bun run build && bun publish"
   },
   "devDependencies": {
     "@types/bun": "latest",
     "@types/react": "^19.0.1"
   },
   "peerDependencies": {
-    "typescript": "^5.7.2"
-  },
-  "dependencies": {
-    "@trelent/e2ee-core": "^0.0.2",
+    "typescript": "^5.7.2",
     "react": "^19.0.0"
   },
-  "publishConfig": {
-    "access": "public"
-  }
+  "dependencies": {
+    "@trelent/e2ee-core": "^0.0.7"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "package.json",
+    "README.md"
+  ]
 }

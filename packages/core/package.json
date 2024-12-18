@@ -1,7 +1,7 @@
 {
   "author": "Trelent Inc.",
   "name": "@trelent/e2ee-core",
-  "version": "0.0.5",
+  "version": "0.0.8",
   "module": "./dist/index.js",
   "homepage": "https://github.com/Trelent/e2ee/tree/main/packages/core#readme",
   "repository": {
@@ -9,23 +9,21 @@
     "url": "https://github.com/trelent/e2ee.git",
     "directory": "packages/core"
   },
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
-  "type": "module",
-  "dependencies": {
-    "superjson": "^2.2.2"
-  },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "build": "tsc",
-    "publish": "bun run build && bun publish"
+    "build": "tsc --project tsconfig.build.json",
+    "pb": "bun run build && bun publish"
   },
+  "peerDependencies": {
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "buffer": "^6.0.3",
+    "superjson": "^2.2.2"
+  },
+  "type": "module",
   "main": "./dist/index.js",
   "exports": {
     ".": {
@@ -33,5 +31,13 @@
       "default": "./dist/index.js"
     }
   },
-  "types": "./dist/index.d.ts"
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "package.json",
+    "README.md"
+  ],
+  "devDependencies": {
+    "@types/bun": "^1.1.14"
+  }
 }

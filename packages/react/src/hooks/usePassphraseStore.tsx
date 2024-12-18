@@ -24,7 +24,7 @@ class LocalStorageStore implements PassphraseStore {
     this.setState(passphrase);
   }
 
-  getPassphrase(): Passphrase {
+  getPassphrase(): Promise<Passphrase> {
     if (!this.state) {
       const stored = localStorage.getItem(this.STORAGE_KEY);
       if (!stored) {
@@ -34,13 +34,13 @@ class LocalStorageStore implements PassphraseStore {
       const parsed = JSON.parse(stored);
       const passphrase = {
         phrase: parsed.phrase,
-        bytes: new Buffer(parsed.bytes),
-        salt: new Buffer(parsed.salt),
+        bytes: Buffer.from(parsed.bytes),
+        salt: Buffer.from(parsed.salt),
       };
       this.setState(passphrase);
-      return passphrase;
+      return Promise.resolve(passphrase);
     }
-    return this.state;
+    return Promise.resolve(this.state);
   }
 }
 
@@ -60,11 +60,11 @@ class StatefulStore implements PassphraseStore {
     this.setState(passphrase);
   }
 
-  getPassphrase(): Passphrase {
+  getPassphrase(): Promise<Passphrase> {
     if (!this.state) {
       throw new Error("Passphrase not set in memory");
     }
-    return this.state;
+    return Promise.resolve(this.state);
   }
 }
 
@@ -81,8 +81,8 @@ export function usePassphraseStore(
         const parsed = JSON.parse(stored);
         setState({
           phrase: parsed.phrase,
-          bytes: new Buffer(parsed.bytes),
-          salt: new Buffer(parsed.salt),
+          bytes: Buffer.from(parsed.bytes),
+          salt: Buffer.from(parsed.salt),
         });
       }
     }

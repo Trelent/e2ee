@@ -85,7 +85,7 @@ const MessageBubble = ({
 };
 
 export default function Home() {
-  const { encrypt } = useE2EE();
+  const { encrypt, getPassphrase } = useE2EE();
   const [messages, setMessages] = useState<
     Array<{
       encrypted: string;
@@ -118,6 +118,11 @@ export default function Home() {
     setCurrentSender((current) => (current === "jane" ? "john" : "jane"));
     form.reset();
   }
+
+  useEffect(() => {
+    const passphrase = getPassphrase();
+    console.log("passphrase", passphrase);
+  }, [getPassphrase]);
 
   return (
     <main className="container flex min-h-screen items-center justify-center">

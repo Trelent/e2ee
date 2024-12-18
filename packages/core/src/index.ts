@@ -33,16 +33,16 @@ export class E2EEService {
     }
   }
 
-  encryptRaw = (data: Buffer): Promise<Buffer> => {
-    const passphrase = this.PassphraseStore.getPassphrase();
+  encryptRaw = async (data: Buffer): Promise<Buffer> => {
+    const passphrase = await this.PassphraseStore.getPassphrase();
 
     const encrypted = encrypt(data, passphrase, this.cryptoConfig);
     this.PassphraseStore.setPassphrase(passphrase);
     return encrypted;
   };
 
-  decryptRaw = (data: Buffer): Promise<Buffer> => {
-    const passphrase = this.PassphraseStore.getPassphrase();
+  decryptRaw = async (data: Buffer): Promise<Buffer> => {
+    const passphrase = await this.PassphraseStore.getPassphrase();
     const decrypted = decrypt(data, passphrase, this.cryptoConfig);
     return decrypted;
   };

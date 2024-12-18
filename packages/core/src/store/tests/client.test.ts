@@ -1,7 +1,7 @@
 import { expect, test } from "bun:test";
 import { MockPassphraseStore } from "./_mock";
 
-test("Can set and get passphrase from store", () => {
+test("Can set and get passphrase from store", async () => {
   const store = new MockPassphraseStore();
   const passphrase = {
     phrase: "test-passphrase",
@@ -10,18 +10,19 @@ test("Can set and get passphrase from store", () => {
   };
 
   store.setPassphrase(passphrase);
-  const retrieved = store.getPassphrase();
+  const retrieved = await store.getPassphrase();
 
   expect(retrieved.phrase).toBe(passphrase.phrase);
+  expect(retrieved.bytes).toEqual(passphrase.bytes);
   expect(retrieved.salt).toEqual(passphrase.salt);
 });
 
-test("Getting passphrase before setting throws error", () => {
+test("Getting passphrase before setting throws error", async () => {
   const store = new MockPassphraseStore();
-  expect(() => store.getPassphrase()).toThrow("Passphrase not set");
+  expect(store.getPassphrase()).rejects.toThrow("Passphrase not set");
 });
 
-test("Can update passphrase", () => {
+test("Can update passphrase", async () => {
   const store = new MockPassphraseStore();
   const passphrase1 = {
     phrase: "test-passphrase-1",
@@ -37,7 +38,7 @@ test("Can update passphrase", () => {
   store.setPassphrase(passphrase1);
   store.setPassphrase(passphrase2);
 
-  const retrieved = store.getPassphrase();
+  const retrieved = await store.getPassphrase();
   expect(retrieved.phrase).toBe(passphrase2.phrase);
   expect(retrieved.salt).toEqual(passphrase2.salt);
 });

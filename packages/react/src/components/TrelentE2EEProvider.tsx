@@ -13,7 +13,7 @@ import {
 // We’ll unify both passphrase & encryption logic in one context:
 interface TrelentE2EEContextValue {
   generatePassphrase: () => Promise<Passphrase>;
-  getPassphrase: () => Passphrase;
+  getPassphrase: () => Promise<Passphrase>;
   encrypt: <T>(data: T) => Promise<string>;
   decrypt: <T>(encrypted: string) => Promise<T>;
   encryptRaw: (data: Buffer) => Promise<string>;
@@ -105,7 +105,7 @@ export function TrelentE2EEProvider({
 
   const encryptRaw = useCallback(
     async (data: Buffer) => {
-      const encrypted = await service.encryptRaw(Buffer.from(data));
+      const encrypted = await service.encryptRaw(data);
       return encrypted.toString("base64");
     },
     [service]
@@ -115,7 +115,7 @@ export function TrelentE2EEProvider({
     async (encrypted: string) => {
       const buffer = Buffer.from(encrypted, "base64");
       const decrypted = await service.decryptRaw(buffer);
-      return new Buffer(decrypted);
+      return Buffer.from(decrypted);
     },
     [service]
   );
